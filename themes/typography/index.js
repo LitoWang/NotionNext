@@ -81,19 +81,24 @@ const LayoutBase = props => {
 
         {siteConfig('SIMPLE_TOP_BAR', null, CONFIG) && <TopBar {...props} />}
 
-        <div className='flex flex-1 mx-auto overflow-hidden py-8 md:p-0 md:max-w-7xl md:px-24 w-screen'>
-          {/* 主体 - 使用 flex 布局 */}
-          {/* 文章详情才显示 */}
-          {/* {props.post && (
-            <div className='mt-20 hidden md:block md:fixed md:left-5 md:w-[300px]'>
-              <Catalog {...props} />
-            </div>
-          )} */}
-          <div className='overflow-hidden md:mt-20 flex-1 '>
-            {/* 左侧内容区域 - 可滚动 */}
+        <div className='flex flex-1 mx-auto overflow-hidden py-8 md:p-0 md:max-w-7xl md:px-10 w-screen'>
+          {/* 左侧导航和页脚 - 固定不滚动 */}
+          <div className='hidden md:flex md:flex-col md:flex-shrink-0 md:justify-between md:w-52 md:h-[100vh] sticky top-20'>
+            <NavBar {...props} />
+            <Footer {...props} />
+          </div>
+
+          {/* 右侧内容区域 - 可滚动 */}
+          <div className='overflow-hidden md:mt-20 flex-1 min-w-0'>
+            {/* 文章详情才显示 */}
+            {/* {props.post && (
+              <div className='mt-20 hidden md:block md:fixed md:left-5 md:w-[300px]'>
+                <Catalog {...props} />
+              </div>
+            )} */}
             <div
               id='container-inner'
-              className='h-full w-full md:px-24 overflow-y-auto scroll-hidden relative'>
+              className='h-full w-full md:px-8 overflow-y-auto scroll-hidden relative'>
               {/* 移动端导航 - 显示在顶部 */}
               <div className='md:hidden'>
                 <NavBar {...props} />
@@ -112,12 +117,6 @@ const LayoutBase = props => {
                 <Footer {...props} />
               </div>
             </div>
-          </div>
-
-          {/* 右侧导航和页脚 - 固定不滚动 */}
-          <div className='hidden md:flex md:flex-col md:flex-shrink-0 md:h-[100vh] sticky top-20'>
-            <NavBar {...props} />
-            <Footer {...props} />
           </div>
         </div>
 
@@ -276,7 +275,7 @@ const LayoutSlug = props => {
 
       {!lock && post && (
         <div
-          className={`px-5 pt-3 ${fullWidth ? '' : 'xl:max-w-4xl 2xl:max-w-6xl'}`}>
+          className={`px-5 pt-3 ${fullWidth ? '' : 'xl:max-w-5xl'}`}>
           {/* 文章信息 */}
           <ArticleInfo post={post} />
 
